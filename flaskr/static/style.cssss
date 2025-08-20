@@ -1,0 +1,19 @@
+@charset "UTF-8";
+.container {
+  width: 80%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  /* background-color: lighten($primary-color, 10%); */
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.navtop {
+  width: 100%;
+  background-color: #0d6efd; /* cor azul Bootstrap só de exemplo */
+  height: 120px;
+}
+
+/*# sourceMappingURL=style.cssss.map */

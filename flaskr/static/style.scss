@@ -1,0 +1,156 @@
+// sass --watch flaskr/static/style.scss:flaskr/static/style.css
+// Início da Página
+
+$container-padding-x: 15px;
+$primary-color: #3548ec;
+
+@mixin make-container($padding-x: $container-padding-x) {
+  width: 80%;
+  padding-right: $padding-x;
+  padding-left: $padding-x;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.container {
+  @include make-container();
+  /* background-color: lighten($primary-color, 10%); */
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.nav {
+  width: 45%;           // ocupa os 25% finais da tela
+  // margin-left: 75%;     // começa a partir de 75% da largura
+  height: 80%;
+  border-radius: 5px;
+  padding: 20px;
+  align-self: flex-start; // alinha ao topo do pai
+  justify-content: center;
+  align-items: center;
+  li {
+    margin-right: 20px;
+    font-size: 20px;
+  }
+}
+
+.navtop {
+  width: 100%;
+  background-color: #5b81ff; /* cor azul Bootstrap só de exemplo */
+  height: 80px;
+  display: flex;
+}
+
+.ref {
+  color: whitesmoke;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.title {
+  width: 50%;
+  margin-left: 15%;
+  height: 80%;
+  font-size: 2rem;
+  font-weight: bold;
+  color: whitesmoke;
+  align-self: flex-start;
+  display: flex;
+  justify-content: center;   // centraliza horizontalmente
+  align-items: center;       // centraliza verticalmente
+  text-align: center;
+}
+
+// Conteúdo da Página
+
+.signup-form-fields {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #24292f;
+  font-family: "Mona Sans", Arial, Helvetica, sans-serif;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.content {
+  width: 20%;
+   //background-color: whitesmoke;
+  margin-left: auto;
+  margin-right: auto;
+  color: black;
+  // border: 1px solid rgba(189, 189, 189, 0.664);
+  // border-radius: 8px;
+  .field {
+    width: 100%;
+    height: 50px;
+    display: block;
+    margin-bottom: 50px;
+    font-size: 20px;
+    gap: 12px;
+    input {
+      // border: 1px solid rgba(189, 189, 189, 0.664);
+      border-radius: 8px;
+      margin-left: 1%;
+      width: 100%;
+      // display: block;
+    }
+    label {
+      font-weight: 500;
+      font-size: 18px;
+    }
+  }
+
+  .mb-1 {
+    margin-top: 0.25rem !important;
+  }
+
+  .mb-3 {
+    margin-bottom: 1rem !important;
+  }
+}
+
+.login-ref {
+  color: #3548ec;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.header {
+  width: 40%;
+  height: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 80px;
+  h1 {
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.position-relative {
+  position: relative;
+}
+
+#register {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  background-color: #24292f;
+  color: whitesmoke;
+  margin-left: 0%;
+  font-weight: bold;
+  border-color: #24292f;
+}
+
+.text-center {
+  text-align: center;
+  margin-top: 20px;
+}
