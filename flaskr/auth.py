@@ -1,7 +1,6 @@
 import functools
 
 import jwt
-# import datatime # type: ignore
 
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
@@ -21,8 +20,11 @@ def register():
         password = request.form['password']
         db = get_db()
 
-        existing_user = db.execute(
+        existing_email = db.execute(
             "SELECT id FROM user WHERE email = ?", (email, )
+        ).fetchone()
+        existing_username = db.execute(
+            "SELECT id FROM user WHERE username = ?", (username, )
         ).fetchone()
 
         error = None
@@ -35,7 +37,9 @@ def register():
             error = "You must write a password"
         elif len(password) < 6:
             error = "Password must be at least 6 characters long"
-        elif existing_user:
+        elif existing_username:
+            error = "Username already registered"
+        elif existing_email:
             error = "Email already registered"
 
         if error:
@@ -52,6 +56,19 @@ def register():
         return redirect(url_for("auth.login"))
 
     return render_template('auth/register.html')
+
+
+@bp.before_app_request
+def load_logged_in_user():
+    user_id = session.get("user_id")
+
+    if user_id is None:
+        g.user = None
+    else:
+        db = get_db()
+        g.user = db.execute(
+            "SELECT * FROM user WHERE id = ?", (user_id,)
+        ).fetchone()
 
 
 @bp.route('/login', methods=("GET", "POST"))
@@ -92,8 +109,5 @@ def login_required(view):
     def wrapped_view(**kwargs):
         if g.user is None:
             return redirect(url_for('auth.login'))
-        
         return view(**kwargs)
-
     return wrapped_view
-

@@ -1,15 +1,35 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}New Post{% endblock %}</h1>
+  <h1>{% block title %}New Task{% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
-  <form method="post">
-    <label for="title">Title</label>
-    <input name="title" id="title" value="{{ request.form['title'] }}" required>
-    <label for="body">Body</label>
-    <textarea name="body" id="body">{{ request.form['body'] }}</textarea>
-    <input type="submit" value="Save">
+  <div class="content">
+  <form method="post" action="{{ url_for('blog.create') }}">
+    <div class="position-relative">
+      <div class="field">
+        <label for="title">Title</label>
+        <div>
+          <input name="title" id="title" class="mb-1 mb-3" value="{{ request.form['title'] }}" required>
+        </div>
+      </div>
+
+      <div class="field" style="margin-bottom: 100px;">
+        <label for="description">Description</label>
+        <div class="mb-1 mb-3">
+          <textarea name="description" id="description" required>{{ request.form['description'] }}</textarea>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="term">Term</label>
+        <div>
+          <input name="term" id="term" class="mb-1 mb-3" type="date" value="{{ request.form['term'] }}" required></input>
+        </div>
+      </div>
+    </div>
+    <div class="field"><input type="submit" value="Create" class="button"></div>
   </form>
+  </div>
 {% endblock %}

@@ -1,15 +1,46 @@
 {% extends 'base.html' %}
 
+{% block nav %}{% endblock %}
+
 {% block header %}
-  <h1 class="title">{% block title %}Log In{% endblock %}</h1>
+  <div style="margin-bottom: 20px;">
+    <h2 datav-view-component="True" class="signup-form-fields">
+      {% block title %}
+        Log In
+      {% endblock %}
+    </h2>
+  </div>
 {% endblock %}
 
 {% block content %}
-  <form method="post">
-    <label for="email">Email</label>
-    <input name="email" id="email" required>
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password" required autocomplete="off">
-    <input type="submit" value="Log In">
-  </form>
+  <div class="content">
+    <form method="post" action="{{ url_for('auth.login') }}">
+      <div class="field position-relative" style="margin-bottom: 30px">
+        <label for="email">
+          Email
+          <sup aria-hidden="true" class="text-red">*</sup>
+        </label>
+        <div class="mb-3 mb-1">
+          <input name="email" id="email" required>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="password" class="text-semibold">
+          Password
+            <sup aria-hidden="true" class="text-red">*</sup>
+        </label>
+        <div class="mb-3 mb-1">
+          <input type="password" name="password" id="password" required autocomplete="off">
+        </div>
+      </div>
+      <div class="field"><input type="submit" class="button" value="Log In"></div>
+    </form>
+    <div class="text-center">
+      <p>
+        Don't have an account?
+        <a href="{{ url_for('auth.register') }}" class="login-ref">Register</a>
+      </p>
+    </div>
+  </div>
 {% endblock %}

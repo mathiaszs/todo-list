@@ -1,5 +1,5 @@
-// sass --watch flaskr/static/style.scss:flaskr/static/style.css
-// Início da Página
+// sass --watch flaskr/static/style.scss flaskr/static/style.css
+// Iníci da Páginao
 
 $container-padding-x: 15px;
 $primary-color: #3548ec;
@@ -76,7 +76,7 @@ $primary-color: #3548ec;
 }
 
 .content {
-  width: 20%;
+  width: 50%;
    //background-color: whitesmoke;
   margin-left: auto;
   margin-right: auto;
@@ -138,7 +138,7 @@ $primary-color: #3548ec;
   position: relative;
 }
 
-#register {
+.button {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
@@ -153,4 +153,140 @@ $primary-color: #3548ec;
 .text-center {
   text-align: center;
   margin-top: 20px;
+}
+
+
+// INDEX
+
+/*.dad-tasks {
+  width: %2000;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+*/
+
+.task {
+  width: 100%;
+  background-color: whitesmoke;
+  border-radius: 4px;
+  border: 1px solid black;
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  align-items: center; // alinha verticalmente
+  gap: 1rem; 
+}
+
+.son-tasks {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 5px;
+}
+
+// CREATE FILE
+
+.task-icon {
+  margin-left: 8px;
+  width: 40px;
+  cursor: pointer;
+}
+.task-icon[title] {
+  position: relative;
+}
+
+  /* Fundo escurecido */
+  #overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 999;
+  }
+
+
+textarea {
+  width: 100%;
+  height: 100px;
+  border: 1px solid rgba(189, 189, 189, 0.664);
+  border-radius: 8px;
+  margin-left: 1%;
+  font-size: 14px;
+  padding: 10px;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+.circle {
+  height: 30px;
+  width: 30px;
+  margin-left: 7px;
+  margin-top: 5px;
+  border-radius: 50%;
+  background: whitesmoke;
+  border: 2.8px solid black;
+  cursor: pointer;
+  
+  display: flex;              /* ativa flexbox */
+  align-items: center;        /* centraliza verticalmente */
+  justify-content: center;    /* centraliza horizontalmente */
+
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.box {
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+}
+
+.circle.checked::after {
+  content: "X";
+  color: green;
+}
+
+.task.checked {
+  background: #66ff7b;    /* verde claro */
+  border-color: rgb(0, 80, 24);
+}
+
+.dad-action {
+  margin-left: 8px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dad-action .action {
+  color: #0d6efd; /* Bootstrap primary color */
+  text-decoration: none;
+  margin-left: 0;
+}
+
+.action {
+  color: #0d6efd; /* Bootstrap primary color */
+  text-decoration: underline;
+}
+
+.delete {
+  color: rgb(230, 0, 0);
+  text-decoration: underline;
+}
+
+.danger {
+  display: flex;
+  align-items: center;
+  // margin-bottom: 10px;
+  border-radius: 2px;
+  background-color: red;
+  color: whitesmoke;
+  margin-left: 0%;
+  font-weight: bold;
 }

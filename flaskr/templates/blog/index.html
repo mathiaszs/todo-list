@@ -1,28 +1,72 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}Posts{% endblock %}</h1>
-  {% if g.user %}
+  <h1>{% block title %}Tasks{% endblock %}
+    <a class="action" href="{{ url_for('blog.create') }}">
+      <img src="{{ url_for('static', filename='create-task.png') }}"
+        alt="Create task"
+        class="task-icon"
+        title="Create task"
+        style="cursor: pointer; margin-left: 20px;">
+    </a>
+  </h1>
+  
+
+  <!-- {% if g.user %}
     <a class="action" href="{{ url_for('blog.create') }}">New</a>
-  {% endif %}
+  {% endif %} -->
 {% endblock %}
 
 {% block content %}
-  {% for post in posts %}
-    <article class="post">
-      <header>
-        <div>
-          <h1>{{ post['title'] }}</h1>
-          <div class="about">by {{ post['username'] }} on {{ post['created'].strftime('%Y-%m-%d') }}</div>
+  <div class="dad-tasks">
+    {% for task in tasks %}
+      <div class="task" data-id="{{ task['id'] }}">
+        <div class="son-tasks">
+          <div class="circle" data-id="{{ task['id'] }}"></div>
+          <h4>{{ task['title'] }}</h4>
+          <h6>({{ task['term'] }})</h6>
+          <div class="dad-action">
+            <a class="action" href="{{ url_for('blog.update', id=task['id']) }}" title="Edit"> 
+              <i class="bi bi-pencil"></i>
+            </a>
+          </div>
+          <div class="dad-action">
+            <a class="delete" href="{{ url_for('blog.delete', id=task['id']) }}" title="Delete"
+               onclick="return confirm('Are you sure that want to delete this task?');">
+              <i class="bi bi-trash"></i>
+            </a>
+          </div>
         </div>
-        {% if g.user['id'] == post['author_id'] %}
-          <a class="action" href="{{ url_for('blog.update', id=post['id']) }}">Edit</a>
-        {% endif %}
-      </header>
-      <p class="body">{{ post['body'] }}</p>
-    </article>
-    {% if not loop.last %}
-      <hr>
-    {% endif %}
-  {% endfor %}
+        <p style="margin-left: 12px;">{{ task['description'] }}</p>
+      </div>
+    {% endfor %}
+  </div>
+
+  <script>
+    // Script para gerenciar o estado das tarefas (feito ou não feito)
+    document.querySelectorAll('.circle').forEach(circle => {
+    const id = circle.dataset.id;
+
+    // 🔹 Restaura o estado salvo no localStorage
+    if (localStorage.getItem("task-" + id) === "done") {
+      circle.classList.add("checked");
+      circle.closest(".task").classList.add("checked");
+    }
+
+    // 🔹 Adiciona o evento de clique
+    circle.addEventListener('click', () => {
+      const task = circle.closest(".task");
+      const checked = task.classList.toggle("checked");
+      circle.classList.toggle("checked");
+
+      // 🔹 Salva o estado individual no localStorage
+      if (checked) {
+        localStorage.setItem("task-" + id, "done");
+      } else {
+        localStorage.removeItem("task-" + id);
+      }
+    });
+  });
+</script>
+
 {% endblock %}

@@ -1,4 +1,6 @@
 -- sqlite3 flaskr/flaskr.sqlite
+-- sqlite3 instance/flaskr.sqlite
+-- flask --app flaskr init-db
 
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS post;
@@ -10,11 +12,11 @@ CREATE TABLE user (
   password TEXT NOT NULL
 );
 
-CREATE TABLE post (
+CREATE TABLE tasks (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   author_id INTEGER NOT NULL,
-  cre TEXT NOT NULL,
-  bodyeated TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  titl TEXT NOT NULL,
+  title TEXT NOT NULL,
+  description TEXT NOT NULL, 
+  term DATE,
   FOREIGN KEY (author_id) REFERENCES user (id)
 );

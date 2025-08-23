@@ -13,45 +13,47 @@
 {% endblock %}
 
 {% block content %}
-    <form method="post" action="{{ url_for('auth.register') }}">
-        <div class="position-relative">
-            <div class="field" style="margin-bottom: 30px">
-                <label for="email">
-                    Email
-                    <sup aria-hidden="true" class="text-red">*</sup>
-                </label>
-                <div class="mb-3 mb-1">
-                    <input name="email" id="email" required placeholder="Email">
+    <div class="content">
+        <form method="post" action="{{ url_for('auth.register') }}">
+            <div class="position-relative">
+                <div class="field" style="margin-bottom: 30px">
+                    <label for="email">
+                        Email
+                        <sup aria-hidden="true" class="text-red">*</sup>
+                    </label>
+                    <div class="mb-3 mb-1">
+                        <input name="email" id="email" required placeholder="Email">
+                    </div>
                 </div>
-            </div>
-            <div class="field">
-                <label for="password" class="text-semibold">
-                    Password
-                    <sup aria-hidden="true" class="text-red">*</sup>
-                </label>
-                <div class="mb-3 mb-1">
-                    <input name="password" id="password" required placeholder="Password" autocomplete="off">
-                    <div style="font-size: 0.85rem; margin-left: 2%;">
-                        Password should be at least 6 characters.
+                <div class="field">
+                    <label for="password" class="text-semibold">
+                        Password
+                        <sup aria-hidden="true" class="text-red">*</sup>
+                    </label>
+                    <div class="mb-3 mb-1">
+                        <input name="password" id="password" required placeholder="Password" autocomplete="off">
+                        <div style="font-size: 0.85rem; margin-left: 2%;">
+                            Password should be at least 6 characters.
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="username" class="text-semibold">
+                        Username
+                        <sup aria-hidden="true" class="text-red">*</sup>
+                    </label>
+                    <div class="mb-3 mb-1">
+                        <input name="username" id="username" required placeholder="Username" autocomplete="off">
                     </div>
                 </div>
             </div>
-            <div class="field">
-                <label for="username" class="text-semibold">
-                    Username
-                    <sup aria-hidden="true" class="text-red">*</sup>
-                </label>
-                <div class="mb-3 mb-1">
-                    <input name="username" id="username" required placeholder="Username">
-                </div>
-            </div>
+            <div class="field"><input type="submit" class="button" value="REGISTER"></div>
+        </form>
+        <div class="text-center">
+            <p>
+                Already have an account?
+                <a href="{{ url_for('auth.login') }}" class="login-ref">Log In</a>
+            </p>
         </div>
-        <div class="field"><input type="submit" id="register" value="REGISTER"></div>
-    </form>
-    <div class="text-center">
-        <p>
-            Already have an account?
-            <a href="{{ url_for('auth.login') }}" class="login-ref">Log In</a>
-        </p>
     </div>
 {% endblock %}
